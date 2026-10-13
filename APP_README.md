@@ -10,6 +10,7 @@ An original, local-first Facebook community listening workspace inspired by the 
 - Apify Actor runner using a server-only `APIFY_TOKEN`; collection results are imported into the review queue.
 - A local draft pad for writing in your own voice.
 - No auto-messaging, auto-commenting, auto-liking, or automatic Facebook publishing.
+- No automated bot-versus-human authenticity score; collected items still need a person to check the original thread.
 
 ## Run locally
 
