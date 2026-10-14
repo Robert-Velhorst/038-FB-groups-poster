@@ -1,37 +1,39 @@
 # Common Ground
 
-An original, local-first Facebook community listening workspace inspired by the group-management workflow in PostPartner and shaped by Robert's earlier Facebook-group tool notes.
+Common Ground is a local-first workspace for finding relevant conversations in Facebook communities, reviewing them in context, and choosing how to connect in your own voice.
 
-## What is here
+## Start
 
-- A responsive dashboard and conversation review queue with clearly marked sample records.
-- Search and intent filters; review actions to dismiss a post, save a person locally, or mark that you joined the discussion.
-- Group/source list with explicit URL entry, categories, and paused-by-default collection.
-- Apify Actor runner using a server-only `APIFY_TOKEN`; collection results are imported into the review queue.
-- A local draft pad for writing in your own voice.
-- No auto-messaging, auto-commenting, auto-liking, or automatic Facebook publishing.
-- No automated bot-versus-human authenticity score; collected items still need a person to check the original thread.
-
-## Run locally
-
-Requires Node.js 20 or newer. The app has no third-party runtime or build dependencies.
+Requires Node.js 20 or newer. No third-party runtime or build dependencies are needed.
 
 ```sh
 npm run dev
 ```
 
-The local server runs at `http://127.0.0.1:4179`. Set `APIFY_TOKEN` in a local `.env` file before starting the server to enable Apify. The token must never be added to the frontend or committed.
+Open `http://127.0.0.1:4179` for the public landing page. Choose **Explore the workspace** or open `/app.html` directly for the app.
 
-`npm start` runs the same server for local production-like use.
+Set `APIFY_TOKEN` in a local `.env` file to enable Apify. Keep the token on the server; never put it in browser code or commit `.env`. Without a token, the sample workspace remains usable.
 
-## Apify connection
+## Apify
 
-The app sends the chosen Actor ID and selected source URLs to `/api/apify/run`. The server calls Apify's `run-sync-get-dataset-items` endpoint and returns up to 100 output items. Actors differ in their input schema and output field names; this starter maps common post text, URL, author, group, and comment-count fields. Adapt the input and mapper for the specific Actor you select.
+In the app, open **Apify**, enter an Actor ID, and adjust the JSON input to match that Actor. The selected Facebook source URLs are supplied through `startUrls`; the Actor must support that input field. Results are read from the Actor's default dataset and normalized into the conversation queue. Runs that take longer than a minute are checked until they finish. Duplicate post URLs are skipped.
 
-Apify Actors can only return what they are able and permitted to access. The Facebook Posts Scraper is intended for public page/profile content; it does not imply access to private group posts. Use an Actor only when the source, method, and intended processing comply with the applicable platform terms, privacy law, and group expectations. A group membership alone is not permission to defeat technical access controls.
+Actors differ in source coverage, input fields, output fields, cost, and access requirements. Common Ground does not log in to Facebook or bypass access controls. An Actor can only return what it can access; group membership by itself is not permission to defeat technical restrictions. Confirm the applicable platform rules, law, and group expectations before collecting. Every imported item still needs a human to check the original thread.
 
-## Data and limits
+## What the workspace can do
 
-Sample conversations are fictional and illustrative. User actions, drafts, groups, and the Actor ID are stored in the current browser's local storage. The app has no login, shared database, retention controls, export/import screen, or multi-user isolation yet. Do not use it for sensitive personal data in this starter form.
+- Search and filter a review queue of sample and collected conversations.
+- Review a post, dismiss it, save a person with a private note, or mark that you joined the conversation.
+- Save Facebook group/page URLs, choose which sources to pass to an Actor, and pause or remove sources.
+- Write and keep private response drafts, then copy them when you choose.
+- Export a JSON backup, restore one, or reset the browser workspace to the examples from **Settings**.
+- Use a responsive landing page to introduce the product and link people to the workspace.
 
-This release is a functional review-first workspace, not a posting clone. Facebook group publishing is intentionally outside this implementation; Meta removed the general publish-to-groups API, and a user-controlled browser workflow would require a separate, carefully reviewed browser-extension implementation.
+## Data and boundaries
+
+The app has no account or shared database. Groups, imported posts, saved people, drafts, and Actor settings are stored in browser local storage. Anyone who can access that browser profile may be able to see the data. Backups can include source URLs and personal notes; store them carefully.
+
+Nothing is automatically posted, commented, liked, messaged, or scheduled. Common Ground does not claim to detect bots or verify that a person is authentic. Facebook actions stay in Facebook and remain your choice. The local server binds to `127.0.0.1`; this repository does not include a hosted deployment, multi-user isolation, or a persistent server database.
+
+All built-in conversations and communities are illustrative samples. Do not treat them as real Facebook posts or people.
+
