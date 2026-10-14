@@ -9,4 +9,3 @@
     "check": "node --check src/app.js && node --check server.mjs && node --check landing.js"
   }
 }
-

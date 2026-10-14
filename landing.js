@@ -11,4 +11,3 @@ nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
   menu?.setAttribute('aria-label','Open navigation');
   nav.classList.remove('open');
 }));
-

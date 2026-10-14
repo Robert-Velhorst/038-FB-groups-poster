@@ -90,4 +90,3 @@ createServer(async (req, res) => {
     res.end(content);
   } catch { res.writeHead(404).end('Not found'); }
 }).listen(port, '127.0.0.1', () => console.log(`Common Ground listening on http://127.0.0.1:${port}`));
-

@@ -36,4 +36,3 @@ The app has no account or shared database. Groups, imported posts, saved people,
 Nothing is automatically posted, commented, liked, messaged, or scheduled. Common Ground does not claim to detect bots or verify that a person is authentic. Facebook actions stay in Facebook and remain your choice. The local server binds to `127.0.0.1`; this repository does not include a hosted deployment, multi-user isolation, or a persistent server database.
 
 All built-in conversations and communities are illustrative samples. Do not treat them as real Facebook posts or people.
-
